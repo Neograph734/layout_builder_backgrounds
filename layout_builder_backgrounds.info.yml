@@ -1,0 +1,10 @@
+name: 'Layout Builder Backgrounds'
+type: module
+description: 'Provides the ability to add images, solid-colors, and other backgrounds to Layout Builder sections'
+core_version_requirement: ^9.1
+package: 'Layout Builder'
+dependencies:
+  - drupal:image
+  - drupal:media
+  - drupal:media_library
+  - media_library_form_element:media_library_form_element (>=2.0)

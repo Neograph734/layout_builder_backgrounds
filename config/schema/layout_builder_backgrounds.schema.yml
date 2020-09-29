@@ -1,0 +1,22 @@
+layout_builder_backgrounds:
+  type: mapping
+  label: 'Layout builder background settings'
+  mapping:
+    color:
+      type: string
+      label: 'Color'
+    media:
+      type: integer
+      label: 'Media'
+    position:
+      type: string
+      label: 'Position'
+
+layout_builder.section.*.third_party.layout_builder_backgrounds:
+  type: layout_builder_backgrounds
+  label: 'Layout builder background settings'
+
+# See https://www.drupal.org/project/drupal/issues/3015152
+#layout_builder.component.*.third_party.layout_builder_backgrounds:
+#  type: layout_builder_backgrounds
+#  label: 'Layout builder background settings'

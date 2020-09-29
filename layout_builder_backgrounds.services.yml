@@ -1,0 +1,5 @@
+services:
+  layout_builder_backgrounds_section_build_subscriber:
+    class: '\Drupal\layout_builder_backgrounds\EventSubscriber\SectionBuildSubscriber'
+    tags:
+      - { name: 'event_subscriber' }

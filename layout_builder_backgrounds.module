@@ -1,0 +1,46 @@
+<?php
+
+/**
+ * @file
+ * Contains layout_builder_backgrounds.module.
+ */
+
+use Drupal\Core\Form\SubformState;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\layout_builder_backgrounds\Form\LayoutBuilderBackgroundsForm;
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Modify the configuration form for layout builder sections (layouts).
+ */
+function layout_builder_backgrounds_form_layout_builder_configure_section_alter(&$form, FormStateInterface $form_state) {
+  $layout_builder_backgrounds_form_object = new LayoutBuilderBackgroundsForm();
+
+  $section = $form_state->getFormObject()->getCurrentSection();
+
+  $form['layout_builder_backgrounds'] = [];
+  $subform_state = SubformState::createForSubform($form['layout_builder_backgrounds'], $form, $form_state);
+  $subform_state->set('section', $section);
+  $form['layout_builder_backgrounds'] = $layout_builder_backgrounds_form_object->buildForm($form['layout_builder_backgrounds'], $subform_state);
+
+  $form['actions']['#weight'] = 100;
+  array_unshift($form['#submit'], [$layout_builder_backgrounds_form_object, 'submitForm']);
+}
+
+/**
+ * Implements hook_help().
+ */
+function layout_builder_backgrounds_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the layout_builder_backgrounds module.
+    case 'help.page.layout_builder_backgrounds':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Adds a background field to Layout Builder layouts.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
