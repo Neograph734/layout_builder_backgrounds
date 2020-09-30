@@ -75,6 +75,8 @@ class LayoutBuilderBackgroundsForm extends FormBase {
     $section->setThirdPartySetting('layout_builder_backgrounds', 'color', $form_state->getValue(['layout_builder_backgrounds', 'background', 'color']));
     $section->setThirdPartySetting('layout_builder_backgrounds', 'media', $form_state->getValue(['layout_builder_backgrounds', 'background', 'media']));
     $section->setThirdPartySetting('layout_builder_backgrounds', 'position', $form_state->getValue(['layout_builder_backgrounds', 'background', 'position']));
+    
+    // TODO unsetThirdPartySetting on empty form values.
   }
 
 }
