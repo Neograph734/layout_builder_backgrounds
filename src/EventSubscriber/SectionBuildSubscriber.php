@@ -3,7 +3,8 @@
 namespace Drupal\layout_builder_backgrounds\EventSubscriber;
 
 use Drupal\file\Entity\File;
-use Drupal\layout_builder\Event\SectionBuildRenderArrayEvent ;
+use Drupal\layout_builder\Event\SectionBuildRenderArrayEvent;
+use Drupal\layout_builder\Event\SectionComponentBuildRenderArrayEvent;
 use Drupal\layout_builder\LayoutBuilderEvents;
 use Drupal\media\Entity\Media;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -15,17 +16,18 @@ class SectionBuildSubscriber implements EventSubscriberInterface {
    */
   public static function getSubscribedEvents() {
     return [
-      LayoutBuilderEvents::SECTION_BUILD_RENDER_ARRAY => 'onBuildRender',
+      LayoutBuilderEvents::SECTION_BUILD_RENDER_ARRAY => 'onSectionBuildRender',
+      // LayoutBuilderEvents::SECTION_COMPONENT_BUILD_RENDER_ARRAY  => 'onComponentBuildRender',
     ];
   }
 
   /**
-   * Builds render arrays for block plugins and sets it on the event.
+   * Builds render arrays for layout builder sections and sets it on the event.
    *
    * @param \Drupal\layout_builder\Event\SectionBuildRenderArrayEvent  $event
    *   The section component render event.
    */
-  public function onBuildRender(SectionBuildRenderArrayEvent  $event) {
+  public function onSectionBuildRender(SectionBuildRenderArrayEvent  $event) {
     $third_party_settings = $event->getSection()->getThirdPartySettings('layout_builder_backgrounds');
     $build = $event->getBuild();
 
@@ -72,6 +74,15 @@ class SectionBuildSubscriber implements EventSubscriberInterface {
     }
 
     $event->setBuild($build);
+  }
+  
+  /**
+   * Builds render arrays for layout builder components and sets it on the event.
+   *
+   * @param \Drupal\layout_builder\Event\SectionComponentBuildRenderArrayEvent  $event
+   *   The section component render event.
+   */
+  public function onComponentBuildRender(SectionComponentBuildRenderArrayEvent  $event) {
   }
 
 }
