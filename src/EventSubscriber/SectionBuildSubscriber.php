@@ -50,7 +50,7 @@ class SectionBuildSubscriber implements EventSubscriberInterface {
         $media_entity = Media::load($media);
         $fid = $media_entity->getSource()->getSourceFieldValue($media_entity);
         $file = File::load($fid);
-        $url = $file->url();
+        $url = $file->createFileUrl(FALSE);
         $media_image_styles = [
           'background-image: url(' . $url . ');',
           'background-position: ' . $position . ';',
