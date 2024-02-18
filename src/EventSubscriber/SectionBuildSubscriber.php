@@ -16,8 +16,9 @@ class SectionBuildSubscriber implements EventSubscriberInterface {
    */
   public static function getSubscribedEvents() {
     return [
-      LayoutBuilderEvents::SECTION_BUILD_RENDER_ARRAY => 'onSectionBuildRender',
-      // LayoutBuilderEvents::SECTION_COMPONENT_BUILD_RENDER_ARRAY  => 'onComponentBuildRender',
+      //SectionBuildRenderArrayEvent::class => ['onSectionBuildRender', 100]
+      SectionBuildRenderArrayEvent::SECTION_BUILD_RENDER_ARRAY => 'onSectionBuildRender',
+      //LayoutBuilderEvents::SECTION_COMPONENT_BUILD_RENDER_ARRAY  => 'onComponentBuildRender',
     ];
   }
 
